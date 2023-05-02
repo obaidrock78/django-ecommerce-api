@@ -13,9 +13,16 @@ RUN apt-get update -y && \
     pip install --upgrade pip && \
     pip install -r requirements.txt
 
-COPY ./entrypoint.sh .
+#COPY ./entrypoint.sh .
+#RUN chmod +x /code/entrypoint.sh
+#
+#COPY . .
+#
+#ENTRYPOINT ["/code/entrypoint.sh"]
+
+COPY . /code/
+
+COPY entrypoint.sh /code/entrypoint.sh
 RUN chmod +x /code/entrypoint.sh
 
-COPY . .
-
-ENTRYPOINT ["/code/entrypoint.sh"]
+CMD ["/code/entrypoint.sh"]
